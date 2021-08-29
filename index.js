@@ -19,3 +19,33 @@ function loneliest(str) {
   }
 //   return Array(str)
 }
+
+function loneliest(str) {
+    let trimmed = str.trim();
+    let left = 0
+    let right = 0
+    let spaces = 0
+    let lonelyArray = []
+​
+    if (trimmed.length === 1) return [trimmed[0]]
+​
+​
+    for (let i = 0; i < trimmed.length; i++) {
+        if (trimmed[i] === ' ') {
+            continue
+        }
+        right = 0;
+        for (let j = 1; trimmed[i + j] === ' '; j++) {
+            right++
+        }
+        if (left + right > spaces) {
+            spaces = left + right;
+            lonelyArray = [trimmed[i]];
+        }
+        else if (left + right === spaces) {
+            lonelyArray.push(trimmed[i])
+        }
+        left = right
+    }
+    return lonelyArray
+};
